@@ -14,6 +14,14 @@ public:
         checkActualSize();
     }
 
+    DynamicArray(const DynamicArray& targetArr)
+        : actualSize{targetArr.actualSize}, logicalSize{targetArr.logicalSize}, resizeRange{targetArr.resizeRange}
+    {
+        data = new int[actualSize];
+        for (int index = 0; index < logicalSize; ++index)
+            data[index] = targetArr.data[index];
+    }
+
     ~DynamicArray()
     {
         delete[] data;
